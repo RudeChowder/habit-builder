@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by(id: params[:id])
     authorize
+    @habits = @user.habits.uniq
   end
 
 private
