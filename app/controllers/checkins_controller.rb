@@ -25,6 +25,13 @@ class CheckinsController < ApplicationController
     end
   end
 
+  def destroy
+    @checkin = Checkin.find_by(params[:id])
+    @checkin&.destroy
+    flash[:success] = "Checkin successfully deleted"
+    redirect_to current_user
+  end
+
 private
 
   def checkin_params
