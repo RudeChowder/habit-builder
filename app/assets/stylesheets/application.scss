@@ -14,5 +14,9 @@
  *= require_self
  */
  
- @import "bootstrap-sprockets";
+@import "bootstrap-sprockets";
 @import "bootstrap";
+
+.main-content-container {
+  margin: 0 20px 0 20px;
+}
