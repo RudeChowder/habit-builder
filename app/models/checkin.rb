@@ -1,4 +1,5 @@
 class Checkin < ApplicationRecord
   belongs_to :user
-  belongs_to :habit
+  has_many :habit_checkins
+  has_many :habits, through: :habit_checkins
 end
