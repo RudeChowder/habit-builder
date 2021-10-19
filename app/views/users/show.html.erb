@@ -1,7 +1,16 @@
-<h2>Hello <%= @user.short_name %>!</h2>
+<h2><%= @user.short_name %></h2>
 <div class="habit-info">
   <p>The habits you are currently building are:</p>
-  <ul>
-    <%= render partial: "habits/habit", collection: @habits %>
-  </ul>
+  <% if @habits.empty? %>
+    <p><strong>None!</strong> <%= link_to "Create a new checkin", new_user_checkin_path(@user) %> to start tracking your habit progress! </p> 
+  <% else %>
+    <ul>
+      <%= render partial: "habits/habit", collection: @habits %>
+    </ul>
+    <div class="checkin-info">
+      <p>These are your last few checkins</p>
+        <%= render partial: "checkins/checkin", collection: @checkins %>
+      <%= link_to "View all checkins", user_checkins_path(@user) %>
+    </div>
+  <% end %>
 </div>

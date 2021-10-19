@@ -12,4 +12,8 @@ class Checkin < ApplicationRecord
       errors.add(:date, "cannot be in the future")
     end
   end
+
+  def pretty_date
+    date.strftime("%a, %e %b %Y")
+  end
 end
