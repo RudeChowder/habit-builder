@@ -1,0 +1,20 @@
+<%= form_for checkin, url: user_checkins_path(user.id) do |form| %>
+
+  <%= form.label :habit_ids, "Select the habits you completed" %>:<br>
+  <%= form.collection_check_boxes :habit_ids, habits, :id, :name %>
+  <br>
+
+  <br>
+  <%= form.label "Add a new Habit" %>:<br>
+  <%= form.fields_for habit do |habit_form| %>
+    <%= habit_form.label :name, "New habit name" %>
+    <%= habit_form.text_field :name %>
+  <% end %>
+  <br>
+
+  <%= form.label :date, "Select date for this checkin (default today)" %>
+  <%= form.date_field :date %>
+
+  <br>
+  <%= form.submit "Submit checkin" %>
+<% end %>

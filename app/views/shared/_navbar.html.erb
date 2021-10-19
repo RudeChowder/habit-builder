@@ -7,7 +7,7 @@
       <%= link_to "Profile", current_user, class: "nav-link" %>
     </div>
     <div class="nav-item">
-      <%= link_to "New Checkin", root_path, class: "nav-link" %>
+      <%= link_to "New Checkin", new_user_checkin_path(current_user.id), class: "nav-link" %>
     </div>
     <div class="nav-item">
       <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
