@@ -1,10 +1,13 @@
 <div class="card">
-  <div class="card-body">
+  <div class="card-header">
     <h5 class="card-title"><%= checkin.pretty_date %></h5>
+  </div>
+  <div class="card-body">
     <ul>
       <%= render partial: "habits/habit", collection: checkin.habits %>
     </ul>
-    <%= link_to "Edit", edit_user_checkin_path(@user), class: "card-link" %>
-    <%= link_to "Delete", user_checkin_path(@user), method: :delete, class: "card-link", data: {confirm: "Are you sure you want to delete this checkin?"} %>
+    <p class="card-text"><strong>Note:</strong> <%= checkin.notes %></p>
+    <%= link_to "Edit", edit_user_checkin_path(checkin.user, checkin), class: "btn btn-primary btn-sm" %>
+    <%= link_to "Delete", user_checkin_path(checkin.user, checkin), method: :delete, class: "btn btn-danger btn-sm", data: {confirm: "Are you sure you want to delete this checkin?"} %>
   </div>
 </div>

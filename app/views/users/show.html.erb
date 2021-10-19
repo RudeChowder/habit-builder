@@ -9,8 +9,9 @@
     </ul>
     <div class="checkin-info">
       <p>These are your last few checkins</p>
-        <%= render partial: "checkins/checkin", collection: @checkins %>
-      <%= link_to "View all checkins", user_checkins_path(@user) %>
+      <%= render partial: "checkins/checkin", collection: @checkins %>
+      <br>
+      <%= link_to "View all checkins", user_checkins_path(@user), class: "btn btn-primary btn" %>
     </div>
   <% end %>
 </div>

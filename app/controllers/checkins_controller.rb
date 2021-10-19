@@ -1,8 +1,9 @@
 class CheckinsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_user, only: [:index]
 
   def index
-    
+    @checkins = @user&.checkins
   end
   
   def show
@@ -39,8 +40,12 @@ private
   end
 
   def prep_form
-    @user = User.find_by(id: params[:user_id])
+    set_user
     @habit = @checkin.habits.build
     @habits = Habit.all
+  end
+
+  def set_user
+    @user = User.find_by(id: params[:user_id])
   end
 end
