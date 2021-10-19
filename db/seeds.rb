@@ -6,7 +6,7 @@ user2 = User.create(email: "test@test.com", password: "password")
 h1 = Habit.create(name: "Read 1 chapter")
 h2 = Habit.create(name: "Walk 5,000 steps")
 h3 = Habit.create(name: "Go to the gym")
-h4 = Habit.create(name: "Call mom")
+h4 = Habit.create(name: "Cook Lunch")
 
 c1 = Checkin.create(user: user1, date: "2021-10-17", notes: "Read Duma Key")
 c1.habits << h1
