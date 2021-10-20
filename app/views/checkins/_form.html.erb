@@ -6,7 +6,12 @@
 
   <div class="form-group">
     <%= form.label :habit_ids, "Select the habits you completed" %>:<br>
-    <%= form.collection_check_boxes :habit_ids, habits, :id, :name, html: {class: "form-check form-check-inline"} %>
+    <%= form.collection_check_boxes :habit_ids, habits, :id, :name do |b| %>
+      <div class="form-check form-check-inline">
+        <%= b.check_box(class: "form-check-input") %>
+        <%= b.label(class: "form-check-label") %>
+      </div>
+    <% end %>
   </div>
 
   <div class="form-group">
