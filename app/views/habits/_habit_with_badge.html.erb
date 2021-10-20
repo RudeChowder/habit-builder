@@ -1,0 +1,4 @@
+<li class="list-group-item">
+  <%= link_to habit_with_badge.name, user_habit_path(user, habit_with_badge) %>
+  <span class="badge badge-primary badge-pill"><%= user.checkin_count_for_habit(habit_with_badge) %></span>
+</li>

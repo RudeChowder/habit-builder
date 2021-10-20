@@ -1,9 +1,9 @@
-<div class="card mb-3">
+<div class="card mb-3 w-25">
   <div class="card-header">
     <h5 class="card-title"><%= checkin.pretty_date %></h5>
   </div>
   <div class="card-body">
-    <ul>
+    <ul class="list-group list-group-flush">
       <%= render partial: "habits/habit", collection: checkin.habits, locals: {user: checkin.user} %>
     </ul>
     <p class="card-text"><strong>Note:</strong> <%= checkin.notes %></p>
