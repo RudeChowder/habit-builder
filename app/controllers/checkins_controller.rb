@@ -2,6 +2,7 @@ class CheckinsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user, only: %i[index]
   before_action :set_checkin, only: %i[show edit update destroy]
+  before_action :set_user_and_authorize
 
   def index
     @checkins = @user&.checkins
@@ -53,7 +54,6 @@ private
   end
 
   def prep_form
-    set_user
     @habit = @checkin.habits.build
     @habits = Habit.all
   end
