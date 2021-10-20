@@ -1,6 +1,6 @@
 <%= render partial: "devise/shared/error_messages", locals: {resource: checkin} %>
 
-<%= form_for checkin, url: user_checkins_path(user.id) do |form| %>
+<%= form_for [user, checkin] do |form| %>
 
   <%= form.hidden_field :user_id, value: user.id %>
 

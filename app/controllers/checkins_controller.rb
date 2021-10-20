@@ -1,15 +1,14 @@
 class CheckinsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: [:index]
+  before_action :set_user, only: %i[index]
+  before_action :set_checkin, only: %i[show edit update destroy]
 
   def index
     @checkins = @user&.checkins
   end
-  
-  def show
 
-  end
-  
+  def show; end
+
   def new
     @checkin = Checkin.new(date: Date.today)
     prep_form
@@ -18,7 +17,7 @@ class CheckinsController < ApplicationController
   def create
     @checkin = Checkin.new(checkin_params)
     if @checkin.save
-      flash[:success] = "Check in created! Thanks for taking care of yourself!"
+      flash[:success] = "Check in created!"
       redirect_to @checkin.user
     else
       prep_form
@@ -27,10 +26,24 @@ class CheckinsController < ApplicationController
   end
 
   def destroy
-    @checkin = Checkin.find_by(params[:id])
     @checkin&.destroy
     flash[:success] = "Checkin successfully deleted"
     redirect_to current_user
+  end
+
+  def edit
+    prep_form
+  end
+
+  def update
+    @checkin.assign_attributes(checkin_params)
+    if @checkin.save
+      flash[:success] = "Checkin updated!"
+      redirect_to @checkin.user
+    else
+      prep_form
+      render :new
+    end
   end
 
 private
@@ -43,5 +56,12 @@ private
     set_user
     @habit = @checkin.habits.build
     @habits = Habit.all
+  end
+
+  def set_checkin
+    @checkin = Checkin.find_by!(id: params[:id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:warning] = "Sorry, we could not find that checkin"
+    redirect_to user_checkins_path(current_user)
   end
 end
