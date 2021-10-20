@@ -1,0 +1,11 @@
+<div class="card mb-3 w-25">
+  <div class="card-header">
+    <h5 class="card-title"><%= goal.habit.name %></h5>
+  </div>
+  <div class="card-body">
+    <p class="card-text"><strong>Target:</strong> <%= goal.target %> days</p>
+    <p class="card-text"><strong>Progress:</strong> <%= goal.user.checkin_count_for_habit(goal.habit) %> days</p>
+    <%= link_to "Edit", edit_user_goal_path(goal.user, goal), class: "btn btn-primary btn-sm" %>
+    <%= link_to "Delete", user_goal_path(goal.user, goal), method: :delete, class: "btn btn-danger btn-sm", data: {confirm: "Are you sure you want to delete this goal?"} %>
+  </div>
+</div>

@@ -11,7 +11,7 @@ class GoalsController < ApplicationController
 
   def new
     @goal = Goal.new()
-    prep_form
+    # prep_form
   end
 
   def create
@@ -20,7 +20,7 @@ class GoalsController < ApplicationController
       flash[:success] = "New goal set!"
       redirect_to @goal.user
     else
-      prep_form
+      # prep_form
       render :new
     end
   end
@@ -32,7 +32,7 @@ class GoalsController < ApplicationController
   end
 
   def edit
-    prep_form
+    # prep_form
   end
 
   def update
@@ -41,7 +41,7 @@ class GoalsController < ApplicationController
       flash[:success] = "Goal updated!"
       redirect_to @goal.user
     else
-      prep_form
+      # prep_form
       render :new
     end
   end
