@@ -4,4 +4,8 @@ class Habit < ApplicationRecord
   has_many :users, through: :checkins
 
   validates :name, presence: true, uniqueness: true
+
+  def oldest_checkin_for_user(user)
+    checkins.where(user: user).order(:date).limit(1).first
+  end
 end

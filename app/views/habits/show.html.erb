@@ -1,1 +1,3 @@
 <h2><%= @habit.name %></h2>
+<p>You have checked in for this habit <%= pluralize(@checkin_count, "time") %>!</p>
+<p>You started building this habit on <%= @oldest_checkin_date %>.</p>

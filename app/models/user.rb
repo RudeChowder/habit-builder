@@ -18,4 +18,8 @@ class User < ApplicationRecord
   def last_three_checkins
     checkins.order(date: :desc).limit(3)
   end
+
+  def checkin_count_for_habit(habit)
+    habits.where(name: habit.name).count
+  end
 end
