@@ -1,6 +1,5 @@
 class CheckinsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: %i[index]
   before_action :set_checkin, only: %i[show edit update destroy]
   before_action :set_user_and_authorize
 

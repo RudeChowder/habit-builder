@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :checkins
   has_many :habits, through: :checkins
+  has_many :goals
 
   def short_name
     email.split("@")[0]

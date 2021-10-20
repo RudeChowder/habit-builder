@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   resources :users, only: [:show] do
     resources :checkins
     resources :habits
+    resources :goals
   end
 end
