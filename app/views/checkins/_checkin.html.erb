@@ -4,7 +4,7 @@
   </div>
   <div class="card-body">
     <ul>
-      <%= render partial: "habits/habit", collection: checkin.habits %>
+      <%= render partial: "habits/habit", collection: checkin.habits, locals: {user: checkin.user} %>
     </ul>
     <p class="card-text"><strong>Note:</strong> <%= checkin.notes %></p>
     <%= link_to "Edit", edit_user_checkin_path(checkin.user, checkin), class: "btn btn-primary btn-sm" %>
