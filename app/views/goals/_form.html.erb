@@ -1,0 +1,26 @@
+<%= render partial: "devise/shared/error_messages", locals: {resource: goal} %>
+
+<%= form_for [user, goal] do |form| %>
+  <%= form.hidden_field :user_id, value: user.id %>
+
+  <div class="form-group">
+    <%= form.label :habit_id, "Select the habit this goal is for" %>:<br>
+    <%= form.collection_select :habit_id, habits, :id, :name, prompt: true %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Or create a new habit" %>:<br>
+    <%= form.fields_for :habit, habit do |habit_form| %>
+      <%= habit_form.label :name, "New habit name" %>
+      <%= habit_form.text_field :name %>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :target, "What is your target for total checkins on this habit?" %>
+    <%= form.number_field :target %>
+  </div>
+
+  <%= form.submit "Set Goal" %>
+
+<% end %>

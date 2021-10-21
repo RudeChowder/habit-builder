@@ -1,2 +1,2 @@
 <h2>New goal</h2>
-<% render "form" %>
+<%= render partial: "form", locals: {goal: @goal, habit: @habit, habits: @habits, user: @user} %>

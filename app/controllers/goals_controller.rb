@@ -10,8 +10,8 @@ class GoalsController < ApplicationController
   def show; end
 
   def new
-    @goal = Goal.new()
-    # prep_form
+    @goal = Goal.new
+    prep_form
   end
 
   def create
@@ -20,7 +20,7 @@ class GoalsController < ApplicationController
       flash[:success] = "New goal set!"
       redirect_to @goal.user
     else
-      # prep_form
+      prep_form
       render :new
     end
   end
@@ -32,7 +32,7 @@ class GoalsController < ApplicationController
   end
 
   def edit
-    # prep_form
+    prep_form
   end
 
   def update
@@ -41,7 +41,7 @@ class GoalsController < ApplicationController
       flash[:success] = "Goal updated!"
       redirect_to @goal.user
     else
-      # prep_form
+      prep_form
       render :new
     end
   end
@@ -49,7 +49,12 @@ class GoalsController < ApplicationController
 private
 
   def goal_params
-    params.require(:goal).permit(:user_id, :habit_id, :target)
+    params.require(:goal).permit(:user_id, :habit_id, :target, habit_attributes: [:name])
+  end
+
+  def prep_form
+    @habits = Habit.all
+    @habit = @goal.build_habit
   end
 
   def set_goal
