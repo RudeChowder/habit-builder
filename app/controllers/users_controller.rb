@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     @user = User.find_by!(id: params[:id])
     authorize
     @habits = @user.current_habits
+    @goals = @user.goals
     @checkins = @user.last_three_checkins
   end
 end

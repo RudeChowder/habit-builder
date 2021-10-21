@@ -14,7 +14,7 @@
   <body>
     <%= render "shared/navbar" %>
     <% flash.each do |type, message| %>
-      <div class="alert alert-<%= flash_class_name(type) %> alert-dismissable">
+      <div class="alert alert-<%= flash_class_name(type) %>">
         <%= message %>
       </div>
     <% end %>

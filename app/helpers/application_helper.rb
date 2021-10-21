@@ -5,5 +5,5 @@ module ApplicationHelper
     when "alert"  then "danger"
     else name
     end
-  end  
+  end
 end
