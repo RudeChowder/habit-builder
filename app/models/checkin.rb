@@ -7,6 +7,8 @@ class Checkin < ApplicationRecord
   validates :date, presence: true
   validate :date_not_in_the_future
 
+  after_commit :update_goals
+
   def date_not_in_the_future
     if date.present? && date > Date.today
       errors.add(:date, "cannot be in the future")
@@ -15,5 +17,12 @@ class Checkin < ApplicationRecord
 
   def pretty_date
     date.strftime("%a, %e %b %Y")
+  end
+
+  def update_goals
+    habits.each do |habit|
+      goals_to_update = user.goals.where(habit: habit)
+      goals_to_update.each(&:check_completion)
+    end
   end
 end

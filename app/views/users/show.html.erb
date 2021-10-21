@@ -3,7 +3,7 @@
     <p><strong>None!</strong> <%= link_to "Create a new checkin", new_user_checkin_path(@user) %> to start tracking your habit progress! </p> 
 <% else %>
   <div class="habits-and-goals d-flex justify-content-around">
-    <div class="habit-info">
+    <div class="habit-info w-25">
       <h4>The habits you are currently building are:</h4>
       <ul class="list-group w-100">
         <li class="list-group-item bg-dark text-white d-flex justify-content-between align-items-center">
@@ -13,18 +13,24 @@
         <%= render partial: "habits/habit_with_badge", collection: @habits, as: :habit_with_badge, locals: {user: @user} %>
       </ul>
     </div>
-    <div class="goal-info">
-      <h4>Your current goals are</h4>
-      <div class="goal-cards">
-        <%= render partial: "goals/goal", collection: @goals %>
+    <div class="goal-info w-50 border border-dark">
+      <h4 class="d-flex justify-content-center">Your in-progress goals are</h4>
+      <div class="goal-cards d-flex flex-wrap justify-content-center">
+        <%= render partial: "goals/goal", collection: @unachieved_goals %>
+      </div>
+      <div class="button-container d-flex justify-content-center">
+        <%= link_to "View all goals", user_goals_path(@user), class: "btn btn-primary btn mb-3 align-self-center" %>
       </div>
     </div>
   </div>
-  <div class="d-flex justify-content-center">
-    <div class="checkin-info">
-      <h4>These are your last few checkins</h4>
+  <div class="checkin-info w-75 container justify-content-center">
+    <h4 class="d-flex justify-content-center">These are your last few checkins</h4>
+    <div class="checkin-cards d-flex flex-wrap justify-content-center">
       <%= render partial: "checkins/checkin", collection: @checkins %>
-      <br>
+    </div>
+    <br>
+    <div class="button-container d-flex justify-content-center">
       <%= link_to "View all checkins", user_checkins_path(@user), class: "btn btn-primary btn mb-5" %>
     </div>
+  </div>
 <% end %>

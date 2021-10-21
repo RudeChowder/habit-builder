@@ -4,7 +4,7 @@ class CheckinsController < ApplicationController
   before_action :set_user_and_authorize
 
   def index
-    @checkins = @user&.checkins
+    @checkins = @user.checkins.order(date: :desc)
   end
 
   def show; end
