@@ -4,7 +4,8 @@ class GoalsController < ApplicationController
   before_action :set_user_and_authorize
 
   def index
-    @goals = @user&.goals
+    @unachieved_goals = @user.goals.unachieved
+    @achieved_goals = @user.goals.achieved
   end
 
   def show; end

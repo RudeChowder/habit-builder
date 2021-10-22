@@ -1,6 +1,12 @@
-<div class="goal-info">
-  <h2>Your current goals:</h2>
-  <div class="goal-cards d-flex flex-wrap">
-    <%= render @goals %>
+<div class="goal-info unachieved">
+  <h2>Your in-progess goals:</h2>
+  <div class="goal-cards d-flex flex-wrap unachieved">
+    <%= render @unachieved_goals %>
+  </div>
+</div>
+<div class="goal-info achieved">
+  <h2>Your completed goals:</h2>
+  <div class="goal-cards d-flex flex-wrap achieved">
+    <%= render @achieved_goals %>
   </div>
 </div>
