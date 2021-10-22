@@ -4,6 +4,7 @@ class Checkin < ApplicationRecord
   has_many :habits, through: :habit_checkins
   accepts_nested_attributes_for :habits, reject_if: :all_blank
 
+  validates :habits, presence: true
   validates :date, presence: true
   validate :date_not_in_the_future
 

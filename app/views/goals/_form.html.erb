@@ -21,6 +21,8 @@
     <%= form.number_field :target %>
   </div>
 
-  <%= form.submit "Set Goal" %>
-
+  <div class="form-group">
+    <%= form.submit "Set Goal" %>
+    <%= link_to "Cancel", user_path(@user), class: "btn btn-sm btn-primary mt-4" %>
+  </div>
 <% end %>

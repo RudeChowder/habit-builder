@@ -4,9 +4,13 @@ class HabitsController < ApplicationController
   before_action :set_habit, only: %i[show]
 
   def show
-    @habit = Habit.find_by!(id: params[:id])
-    @checkin_count = @user.checkin_count_for_habit(@habit)
-    @oldest_checkin_date = @habit.oldest_checkin_for_user(@user).pretty_date
+    if @habit.users.include?(@user)
+      @checkin_count = @user.checkin_count_for_habit(@habit)
+      @oldest_checkin_date = @habit.oldest_checkin_for_user(@user).pretty_date
+    else
+      flash[:warning] = "Looks like you haven't checked in for that habit before"
+      redirect_to user_path(@user)
+    end
   end
 
 private

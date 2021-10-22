@@ -1,5 +1,8 @@
 <div class="goal-info unachieved">
-  <h2>Your in-progess goals:</h2>
+  <div class="d-flex justify-content-between align-items-center">
+    <h2 class="my-3">Your in-progess goals:</h2>
+    <%= link_to "Back", :back, class: "btn btn-sm btn-primary" %>
+  </div>
   <div class="goal-cards d-flex flex-wrap unachieved">
     <%= render @unachieved_goals %>
   </div>

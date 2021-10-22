@@ -6,12 +6,21 @@
     <div class="nav-item">
       <%= link_to "Profile", current_user, class: "nav-link text-white" %>
     </div>
+    <div class="text-white">|</div>
     <div class="nav-item">
       <%= link_to "New Checkin", new_user_checkin_path(current_user.id), class: "nav-link text-white" %>
     </div>
     <div class="nav-item">
-      <%= link_to "Set a Goal", new_user_goal_path(current_user.id), class: "nav-link text-white" %>
+      <%= link_to "All Checkins", user_checkins_path(current_user.id), class: "nav-link text-white" %>
     </div>
+    <div class="text-white">|</div>
+    <div class="nav-item">
+        <%= link_to "Set a Goal", new_user_goal_path(current_user.id), class: "nav-link text-white" %>
+    </div>
+    <div class="nav-item">
+        <%= link_to "View Goals", user_goals_path(current_user.id), class: "nav-link text-white" %>
+    </div>
+    <div class="text-white">|</div>
     <div class="nav-item">
       <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link text-white", data: { confirm: "Are you sure you want to log out?" } %>
     </div>
