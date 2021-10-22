@@ -1,6 +1,6 @@
 <%= render partial: "devise/shared/error_messages", locals: {resource: goal} %>
 
-<%= form_for [user, goal] do |form| %>
+<%= form_for [user, goal], html: { class: "border border-dark p-4 w-75" } do |form| %>
   <%= form.hidden_field :user_id, value: user.id %>
 
   <div class="form-group">
@@ -23,6 +23,6 @@
 
   <div class="form-group">
     <%= form.submit "Set Goal" %>
-    <%= link_to "Cancel", user_path(@user), class: "btn btn-sm btn-primary mt-4" %>
   </div>
+  <%= link_to "Cancel", user_path(@user), class: "btn btn-sm btn-secondary mt-4" %>
 <% end %>
