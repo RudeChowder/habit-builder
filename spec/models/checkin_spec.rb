@@ -2,17 +2,15 @@ require 'rails_helper'
 
 RSpec.describe Checkin, type: :model do
   describe "associations" do
-    it "belongs_to a user" do
-      should respond_to(:user)
-    end
+    it { should belong_to(:user) }
+    it { should have_many(:habit_checkins) }
+    it { should have_many(:habits) }
+    it { should accept_nested_attributes_for(:habits) }
+  end
 
-    it "has_many habit_checkins" do
-      should respond_to(:habit_checkins)
-    end
-
-    it "has_many habits" do
-      should respond_to(:habits)
-    end
+  describe "validations" do
+    it { should validate_presence_of(:date) }
+    it { should validate_presence_of(:habits) }
   end
 
   describe ".new" do
@@ -20,16 +18,6 @@ RSpec.describe Checkin, type: :model do
       checkin = build(:checkin, :with_habits)
 
       expect(checkin).to be_valid
-    end
-
-    it "is invalid without any habits" do
-      checkin = build(:checkin)
-
-      expect(checkin).not_to be_valid
-    end
-
-    it "is invalid without a date" do
-      checkin = build(:checkin, :with_habits, date: nil)
     end
 
     it "is invalid with a date in the future" do

@@ -2,21 +2,16 @@ require 'rails_helper'
 
 RSpec.describe Habit, type: :model do
   describe "associations" do
-    it "has_many habit_checkins" do
-      should respond_to(:habit_checkins)
-    end
+    it { should have_many(:habit_checkins) }
+    it { should have_many(:checkins) }
+    it { should have_many(:users) }
+    it { should have_many(:goals) }
+  end
 
-    it "has_many checkins" do
-      should respond_to(:checkins)
-    end
-
-    it "has_many users" do
-      should respond_to(:users)
-    end
-
-    it "has_many goals" do
-      should respond_to(:goals)
-    end
+  describe "validations" do
+    subject { FactoryBot.build(:habit) }
+    it { should validate_presence_of(:name) }
+    it { should validate_uniqueness_of(:name) }
   end
 
   describe ".new" do
@@ -25,20 +20,6 @@ RSpec.describe Habit, type: :model do
 
       expect(habit).to be_valid
     end
-
-    it "is invalid without a name" do
-      habit = build(:habit, name: nil)
-
-      expect(habit).to_not be_valid
-    end
-
-    it "is invalid with a duplicated name" do
-      create(:habit, name: "Stop Repeating Myself")
-      habit = build(:habit, name: "Stop Repeating Myself")
-
-      expect(habit).to_not be_valid
-    end
-
   end
 
   describe "#oldest_checkin_for_user" do

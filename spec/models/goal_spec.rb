@@ -2,12 +2,15 @@ require "rails_helper"
 
 RSpec.describe Goal, type: :model do
   describe "associations" do
-    it "belongs_to a user" do
-      should respond_to(:user)
-    end
+    it { should belong_to(:user) }
+    it { should belong_to(:habit) }
+  end
 
-    it "belongs_to a habit" do
-      should respond_to(:habit)
+  describe "validations" do
+    it { should validate_presence_of(:target) }
+    it do
+      should validate_numericality_of(:target).
+        is_greater_than(0)
     end
   end
 
@@ -16,18 +19,6 @@ RSpec.describe Goal, type: :model do
       goal = build(:goal)
 
       expect(goal).to be_valid
-    end
-
-    it "is invalid without a target" do
-      goal = build(:goal, target: nil)
-
-      expect(goal).not_to be_valid
-    end
-
-    it "is invalid with a negative target" do
-      goal = build(:goal, target: -5)
-
-      expect(goal).not_to be_valid
     end
   end
 

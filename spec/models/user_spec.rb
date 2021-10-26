@@ -2,17 +2,9 @@ require "rails_helper"
 
 RSpec.describe User, type: :model do
   describe "associations" do
-    it "has_many checkins" do
-      should respond_to(:checkins)
-    end
-
-    it "has_many habits" do
-      should respond_to(:habits)
-    end
-
-    it "has_many goals" do
-      should respond_to(:goals)
-    end
+    it { should have_many(:checkins) }
+    it { should have_many(:habits) }
+    it { should have_many(:goals) }
   end
 
   describe "#short_name" do
