@@ -9,23 +9,16 @@ class Checkin < ApplicationRecord
   validate :date_not_in_the_future
 
   after_commit :update_goals
-  # after_commit :summarize_note
-
-  def date_not_in_the_future
-    if date.present? && date > Date.today
-      errors.add(:date, "cannot be in the future")
-    end
-  end
 
   def pretty_date
     date.strftime("%a, %e %b %Y")
   end
 
-  # def summarize_note
-  #   prior_summary = summary
-  #   self.summary = notes[0, 30]
-  #   save unless summary == prior_summary
-  # end
+private
+
+  def date_not_in_the_future
+    errors.add(:date, "cannot be in the future") if date.present? && date > Date.today
+  end
 
   def update_goals
     habits.each do |habit|
