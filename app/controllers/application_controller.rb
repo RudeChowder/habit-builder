@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   def authorize
-    return unless @user != current_user
+    return if @user == current_user
 
     flash[:warning] = "You do not have permission to view that profile"
     redirect_to :root, code: :forbidden

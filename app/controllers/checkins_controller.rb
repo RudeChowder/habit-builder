@@ -7,8 +7,6 @@ class CheckinsController < ApplicationController
     @checkins = @user.checkins.order(date: :desc)
   end
 
-  def show; end
-
   def new
     @checkin = Checkin.new(date: Date.today)
     prep_form

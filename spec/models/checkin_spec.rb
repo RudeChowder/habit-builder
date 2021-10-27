@@ -15,13 +15,13 @@ RSpec.describe Checkin, type: :model do
 
   describe ".new" do
     it "is valid with valid attributes" do
-      checkin = build(:checkin, :with_habits)
+      checkin = build(:checkin, :with_many_habits)
 
       expect(checkin).to be_valid
     end
 
     it "is invalid with a date in the future" do
-      checkin = build(:checkin, :with_habits, date: Date.tomorrow)
+      checkin = build(:checkin, :with_many_habits, date: Date.tomorrow)
     end
   end
 
