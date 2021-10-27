@@ -8,8 +8,6 @@ class GoalsController < ApplicationController
     @achieved_goals = @user.goals.achieved
   end
 
-  def show; end
-
   def new
     @goal = Goal.new
     prep_form

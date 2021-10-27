@@ -27,18 +27,18 @@ RSpec.describe CheckinsController, type: :controller do
     end
 
     describe "POST create" do
-      it "creates a new checkin" do
+      it "creates a new checkin with valid input" do
         habit = create(:habit)
 
         expect do
           post :create, params: valid_params(habit).merge(user_id: @user.id)
-        end.to change{Checkin.count}.by(1)
+        end.to change{Checkin.count}.from(0).to(1)
         expect(response).to redirect_to @user
       end
 
       it "re-renders the form with invalid input" do
         post :create, params: invalid_params.merge(user_id: @user.id)
-        
+
         expect(response).to render_template :new
       end
     end
