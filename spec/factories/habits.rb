@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :habit do
-    name { "Write Code" }
+    sequence(:name, 5) { |n| "Write #{n} lines of code" }
     image { "img.jpg" }
   end
 end

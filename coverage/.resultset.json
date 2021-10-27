@@ -119,6 +119,22 @@
           null
         ]
       },
+      "/Users/stephencrane/dev/power/defenders/projects/habit-builder/app/models/habit.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
       "/Users/stephencrane/dev/power/defenders/projects/habit-builder/app/models/checkin.rb": {
         "lines": [
           1,
@@ -148,22 +164,6 @@
           2,
           2,
           null,
-          null,
-          null
-        ]
-      },
-      "/Users/stephencrane/dev/power/defenders/projects/habit-builder/app/models/habit.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          1,
-          null,
-          1,
-          1,
           null,
           null
         ]
@@ -414,6 +414,6 @@
         }
       }
     },
-    "timestamp": 1635359427
+    "timestamp": 1635360033
   }
 }
