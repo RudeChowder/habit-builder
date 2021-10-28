@@ -42,6 +42,54 @@ RSpec.describe CheckinsController, type: :controller do
         expect(response).to render_template :new
       end
     end
+
+    describe "GET edit" do
+      it "renders the edit form" do
+        checkin = create(:checkin, :with_one_habit, user: @user)
+
+        get :edit, params: { user_id: @user.id, id: checkin.id }
+
+        expect(response).to render_template :edit
+        expect(assigns(:checkin)).to eq checkin
+      end
+    end
+
+    describe "POST update" do
+      it "updates the checkin" do
+        checkin = create(:checkin, :with_one_habit, user: @user)
+        habit = create(:habit)
+
+        post :update, params: valid_params(habit).merge(user_id: @user.id, id: checkin.id)
+        checkin.reload
+
+        expect(checkin.habits).to include habit
+        expect(response).to redirect_to @user
+      end
+
+      it "re-renders edit when receiving invalid input" do
+        checkin = create(:checkin, :with_one_habit, user: @user)
+
+        post :update, params: invalid_params.merge(user_id: @user.id, id: checkin.id)
+
+        expect(response).to render_template :edit
+      end
+    end
+
+    describe "DELETE destroy" do
+      it "deletes a checkin" do
+        checkin = create(:checkin, :with_one_habit, user: @user)
+
+        expect do
+          delete :destroy, params: { user_id: @user.id, id: checkin.id }
+        end.to change{Checkin.count}.from(1).to(0)
+      end
+    end
+
+    it "redirects if checkin does not exist" do
+      get :edit, params: { user_id: @user.id, id: 500 }
+
+      expect(response).to redirect_to user_checkins_path(@user)
+    end
   end
 
   context "While signed in as the wrong user", :aggregate_failures do
@@ -72,6 +120,7 @@ RSpec.describe CheckinsController, type: :controller do
       checkin: {
         user_id: @user.id,
         notes: "Cool",
+        date: nil
       }
     }
   end

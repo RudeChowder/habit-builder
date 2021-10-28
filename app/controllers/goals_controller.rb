@@ -41,7 +41,7 @@ class GoalsController < ApplicationController
       redirect_to @goal.user
     else
       prep_form
-      render :new
+      render :edit
     end
   end
 

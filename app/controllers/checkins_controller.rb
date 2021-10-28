@@ -40,7 +40,7 @@ class CheckinsController < ApplicationController
       redirect_to @checkin.user
     else
       prep_form
-      render :new
+      render :edit
     end
   end
 
