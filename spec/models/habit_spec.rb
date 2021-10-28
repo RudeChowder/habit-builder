@@ -26,10 +26,18 @@ RSpec.describe Habit, type: :model do
     it "returns the oldest checkin for specified user" do
       habit = create(:habit)
       user = create(:user)
-      old_checkin = build(:checkin, :with_one_habit, user: user, date: "Mon, 18 Oct 2021")
-      new_checkin = build(:checkin, :with_one_habit, user: user, date: "Tue, 19 Oct 2021")
+      old_checkin = build(:checkin, user: user, date: "Mon, 18 Oct 2021")
+      new_checkin = build(:checkin, user: user, date: "Tue, 19 Oct 2021")
+      add_habit_to_checkin(habit, old_checkin)
+      add_habit_to_checkin(habit, new_checkin)
+      old_checkin.save
+      new_checkin.save
 
       expect(habit.oldest_checkin_for_user(user)).to eq(old_checkin)
     end
+  end
+
+  def add_habit_to_checkin(habit, checkin)
+    checkin.habits << habit
   end
 end
