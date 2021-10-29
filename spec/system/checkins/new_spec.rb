@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "When visiting the new checkins page" do
+describe "When visiting the new checkins page", type: :system do
   before do
     @user = create(:user)
     sign_in @user
