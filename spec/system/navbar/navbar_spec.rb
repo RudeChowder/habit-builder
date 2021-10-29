@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Clicking the link on the nav bar" do
+describe "Clicking the link on the nav bar", type: :system do
   context "While signed out" do
     it "'Sign in' takes you to the sign in page" do
       visit root_path
