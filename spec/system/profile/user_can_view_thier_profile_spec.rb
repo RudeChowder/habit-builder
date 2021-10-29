@@ -6,7 +6,7 @@ describe "When a user views their profile", type: :system do
     sign_in @user
   end
 
-  it "they can see their info" do
+  it "they can see their info", :aggregate_failures do
     habit = create(:habit, name: "Write system tests")
     goal = create(:goal, user: @user, habit: habit, target: 100)
     checkin = build(:checkin, user: @user, date: Date.today)

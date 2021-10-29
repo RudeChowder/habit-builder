@@ -4,7 +4,7 @@
   <%= form.hidden_field :user_id, value: user.id %>
 
   <div class="form-group">
-    <%= form.label :habit_id, "Select the habit this goal is for" %>:<br>
+    <%= form.label :habit_id, "Select the habit this goal is for:" %><br>
     <%= form.collection_select :habit_id, habits, :id, :name, prompt: true %>
   </div>
 
